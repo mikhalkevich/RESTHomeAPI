@@ -14,4 +14,12 @@ router.get('/:id/toogle', function (req, res, next) {
     res.json({'device': id, 'status':req.cookies.porttest});
 });
 
+router.get('/:id/on', function(req, res, next){
+
+});
+
+router.get('/:id/off', function(req, res, next){
+
+});
+
 module.exports = router;
