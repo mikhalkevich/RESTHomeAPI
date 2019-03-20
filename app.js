@@ -36,7 +36,7 @@ app.use(function (req, res, next) {
     next();
 });
 app.use('/', indexRouter);
-app.use('/get', getRouter);
+app.use('/device', getRouter);
 app.use('/cmd', cmdRouter);
 
 // catch 404 and forward to error handler
