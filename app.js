@@ -7,6 +7,7 @@ var logger = require('morgan');
 var indexRouter = require('./routes/index');
 var cmdRouter = require('./routes/cmd');
 var getRouter = require('./routes/get');
+var bindRouter = require('./routes/bind');
 var SerialPort = require('serialport');
 var port = new SerialPort('/dev/ttyUSB0', {autoOpen: true});
 var app = express();
@@ -21,10 +22,10 @@ app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 app.use(express.static(path.join(__dirname, 'node_modules/jquery/dist')));
 app.use(function (req, res, next) {
-    console.log(req.cookies.porttest)
     var cookie = req.cookies.porttest;
     if (cookie === undefined) {
-        compo = '173,2,0,0,0,130,0,3,0,1,255,0,0,143,93,32,174';
+        //compo = '173,2,0,0,0,130,0,3,0,1,255,0,0,143,93,32,174';
+        compo = '0';
     } else {
         console.log(cookie);
         compo = cookie.data;
@@ -37,6 +38,7 @@ app.use(function (req, res, next) {
 });
 app.use('/', indexRouter);
 app.use('/device', getRouter);
+app.use('/bind', bindRouter);
 app.use('/cmd', cmdRouter);
 
 // catch 404 and forward to error handler
