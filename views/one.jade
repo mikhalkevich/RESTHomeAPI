@@ -1,0 +1,33 @@
+extends layout
+block title
+  h1
+   a(href="/") RESTHomeApi
+   span Устройтво !{str}
+block content
+  ul.dev
+   li ID
+    &nbsp;
+    span= ida[0]
+    &nbsp;
+    span= ida[1]
+    &nbsp;
+    span= ida[2]
+    &nbsp;
+    span= ida[3]
+   li
+    a(href = "/cmd/#{str}/on", target="_blank") Включить
+   li
+    a(href = "/cmd/#{str}/off", target="_blank") Выключить
+   li
+    a(href = "/cmd/#{str}/switch", target="_blank") Переключить
+   li
+    table
+     tr
+      td(valign="top")
+       input.level(type="number", min=0, max=256, value=90 id="level_number")
+       br
+       input.level(type="range", min=0, max=256, value=90 id="level_range")
+      td(valign="top")
+       span#level_answer
+      td(valign="top")
+       a.dim(href="#", data-id="#{str}") Димировать

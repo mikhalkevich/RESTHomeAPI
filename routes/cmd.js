@@ -1,5 +1,60 @@
 var express = require('express');
+var mtrf = require('../libs/mtrf');
 var router = express.Router();
+router.get('/:id', function (req, res, next) {
+    var arr = mtrf(2, 9, 0, 0, 4, 0, 0, 0, 0, 0, req.params.id);
+    res.cookie('porttest', res.locals.port.read([]), {maxAge: 900000, httpOnly: true});
+    res.locals.port.write(arr, function (err) {
+        if (err) {
+            return console.log('Error on write: ', err.message);
+        }
+    });
+    res.end();
+});
+router.get('/:id/switch', function (req, res, next) {
+    var arr = mtrf(2, 9, 0, 0, 4, 0, 0, 0, 0, 0, req.params.id);
+    res.cookie('porttest', res.locals.port.read([]), {maxAge: 900000, httpOnly: true});
+    res.locals.port.write(arr, function (err) {
+        if (err) {
+            return console.log('Error on write: ', err.message);
+        }
+    });
+    res.json({'mtrf_command': arr, 'mtrf_answer': req.cookies.porttest});
+});
+
+router.get('/:id/on', function (req, res, next) {
+    var arr = mtrf(2, 9, 0, 0, 2, 0, 0, 0, 0, 0, req.params.id);
+    res.cookie('porttest', res.locals.port.read([]), {maxAge: 900000, httpOnly: true});
+    res.locals.port.write(arr, function (err) {
+        if (err) {
+            return console.log('Error on write: ', err.message);
+        }
+    });
+    res.json({'mtrf_command ': arr, 'mtrf_answer ': req.cookies.porttest});
+});
+
+router.get('/:id/off', function (req, res, next) {
+    var arr = mtrf(2, 9, 0, 0, 0, 0, 0, 0, 0, 0, req.params.id);
+    res.cookie('porttest', res.locals.port.read([]), {maxAge: 900000, httpOnly: true});
+    res.locals.port.write(arr, function (err) {
+        if (err) {
+            return console.log('Error on write: ', err.message);
+        }
+    });
+    res.json({'command': arr, 'mtrf_answer': req.cookies.porttest});
+});
+
+router.get('/:id/level/:lev', function (req, res, next) {
+    //var arr_t = [171, 2, 9, 0, 0, 129, 17, 103, 0, 255, 255, 0, 0, 226, 156, 43, 172];
+    var arr = mtrf(2, 9, 0, 0, 129, 17, parseInt(req.params.lev), 0, 255, 255, req.params.id);
+    res.locals.port.write(arr, function (err) {
+        if (err) {
+            return console.log('Error on write: ', err.message);
+        }
+    });
+    var answer = res.locals.port.read([]);
+    res.json({'command': arr, 'mtrf_answer': answer});
+});
 /*
 router.get('/:id', function(req, res, next){
     var id = req.params.id;
@@ -19,49 +74,7 @@ router.get('/:id', function(req, res, next){
     res.end();
 });
 */
-router.get('/:id', function (req, res, next) {
-    var arr = arr_f(req.params.id, 4);
-    res.cookie('porttest', res.locals.port.read([]), {maxAge: 900000, httpOnly: true});
-    res.locals.port.write(arr, function (err) {
-        if (err) {
-            return console.log('Error on write: ', err.message);
-        }
-    });
-    res.end();
-});
-router.get('/:id/switch', function (req, res, next) {
-    var arr = arr_f(req.params.id, 4);
-    res.cookie('porttest', res.locals.port.read([]), {maxAge: 900000, httpOnly: true});
-    res.locals.port.write(arr, function (err) {
-        if (err) {
-            return console.log('Error on write: ', err.message);
-        }
-    });
-    res.json({'command': arr, 'device': req.cookies.porttest});
-});
-
-router.get('/:id/on', function (req, res, next) {
-    var arr = arr_f(req.params.id, 2);
-    res.cookie('porttest', res.locals.port.read([]), {maxAge: 900000, httpOnly: true});
-    res.locals.port.write(arr, function (err) {
-        if (err) {
-            return console.log('Error on write: ', err.message);
-        }
-    });
-    res.json({'command': arr, 'status': req.cookies.porttest});
-});
-
-router.get('/:id/off', function (req, res, next) {
-    var arr = arr_f(req.params.id, 0);
-    res.cookie('porttest', res.locals.port.read([]), {maxAge: 900000, httpOnly: true});
-    res.locals.port.write(arr, function (err) {
-        if (err) {
-            return console.log('Error on write: ', err.message);
-        }
-    });
-    res.json({'command': arr, 'status': req.cookies.porttest});
-});
-
+/*
 router.get('/:id/level/:lev', function (req, res, next) {
     var arr = arr_f(req.params.id, 1);
     res.cookie('porttest', res.locals.port.read([]), {maxAge: 900000, httpOnly: true});
@@ -72,29 +85,5 @@ router.get('/:id/level/:lev', function (req, res, next) {
     });
     res.json({'command': arr, 'status': req.cookies.porttest});
 });
-
-function arr_f(str, com) {
-    var ida = str.split("-");
-    var x = parseInt(ida[0]);
-    var xx = parseInt(ida[1]);
-    var xxx = parseInt(ida[2]);
-    var xxxx = parseInt(ida[3]);
-    var sum = x + xx + xxx + xxxx + 171 + 2 + 9 + com;
-    var s = 0;
-    if (sum > 768) {
-        var s = sum - 768;
-    } else if (sum > 512) {
-        var s = sum - 512;
-    } else if (sum > 256) {
-        var s = sum - 256;
-    } else {
-        var s = sum;
-    }
-    console.log(x, xx, xxx, xxxx, s);
-    var arr = [171, 2, 9, 0, 0, com, 0, 0, 0, 0, 0, x, xx, xxx, xxxx, s, 172];
-    //var arr = [171, 2, 9, 0, 0, 4, 0, 0, 0, 0, 0, 0, 0, 143, 93, 167, 172];
-    //var arr = [171, 2, 9, 0, 0, 4, 0, 0, 0, 0, 0, 0, 0, 143, 93, 166, 172];
-    return arr;
-}
-
+*/
 module.exports = router;
