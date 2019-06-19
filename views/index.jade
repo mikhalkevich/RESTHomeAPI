@@ -7,11 +7,18 @@ block content
    for one in arr
     li
      a(href = "/get/#{one}") Открыть
+     &nbsp;&nbsp;
      span= one
+     &nbsp;&nbsp;
+     a(href = "/bind/#{one}/unbind") &times;
+
   ul.dev
+   li
+     a(href = "/bind") Привязать
    li /device - просмотр всех подключенных устройств
    li /device/:id - просмотр подключенного устройства по id
    li /cmd/:id/on - включить устройство по id
    li /cmd/:id/off - выключить устройство по id
    li /cmd/:id/switch - выключить если включено, включить если выключено по id
+   li /cmd/:id/level/:lev - димировать устройвтво
    li /bind - привязка нового устройства

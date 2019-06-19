@@ -1,15 +1,31 @@
 var express = require('express');
 var mtrf = require('../libs/mtrf');
+var hex = require('../libs/hex');
+var jsons = require('../libs/json');
 var router = express.Router();
 router.get('/:id', function (req, res, next) {
     var arr = mtrf(2, 9, 0, 0, 4, 0, 0, 0, 0, 0, req.params.id);
+//
     res.cookie('porttest', res.locals.port.read([]), {maxAge: 900000, httpOnly: true});
     res.locals.port.write(arr, function (err) {
         if (err) {
             return console.log('Error on write: ', err.message);
         }
     });
-    res.end();
+//
+    var str = hex(req.params.id);
+    var state = 'off';
+    var firm = 0;
+    var brightness = 0;
+    if (req.cookies.porttest.data) {
+        if (req.cookies.porttest.data[9] == 1) {
+            var state = 'on';
+            var firm = 1;
+            var brightness = 100;
+        }
+    }
+    var json_ans = jsons(str, firm, state, brightness);
+    res.json(json_ans);
 });
 router.get('/:id/switch', function (req, res, next) {
     var arr = mtrf(2, 9, 0, 0, 4, 0, 0, 0, 0, 0, req.params.id);
@@ -19,7 +35,19 @@ router.get('/:id/switch', function (req, res, next) {
             return console.log('Error on write: ', err.message);
         }
     });
-    res.json({'mtrf_command': arr, 'mtrf_answer': req.cookies.porttest});
+    var str = hex(req.params.id);
+    var state = 'off';
+    var firm = 0;
+    var brightness = 0;
+    if (req.cookies.porttest.data) {
+        if (req.cookies.porttest.data[9] == 1) {
+            var state = 'on';
+            var firm = 1;
+            var brightness = 100;
+        }
+    }
+    var json_ans = jsons(str, firm, state, brightness);
+    res.json(json_ans);
 });
 
 router.get('/:id/on', function (req, res, next) {
@@ -30,7 +58,10 @@ router.get('/:id/on', function (req, res, next) {
             return console.log('Error on write: ', err.message);
         }
     });
-    res.json({'mtrf_command ': arr, 'mtrf_answer ': req.cookies.porttest});
+    //answer
+    var str = hex(req.params.id);
+    var json_ans = jsons(str, 1, 'on', 255);
+    res.json(json_ans);
 });
 
 router.get('/:id/off', function (req, res, next) {
@@ -41,12 +72,15 @@ router.get('/:id/off', function (req, res, next) {
             return console.log('Error on write: ', err.message);
         }
     });
-    res.json({'command': arr, 'mtrf_answer': req.cookies.porttest});
+    //answer
+    var str = hex(req.params.id);
+    var json_ans = jsons(str, 0, 'off', 0);
+    res.json(json_ans);
 });
 
 router.get('/:id/level/:lev', function (req, res, next) {
     //var arr_t = [171, 2, 9, 0, 0, 129, 17, 103, 0, 255, 255, 0, 0, 226, 156, 43, 172];
-    var arr = mtrf(2, 9, 0, 0, 129, 17, parseInt(req.params.lev), 0, 255, 255, req.params.id);
+    var arr = mtrf(2, 9, 0, 0, 6, 0, parseInt(req.params.lev), 0, 255, 255, req.params.id);
     res.locals.port.write(arr, function (err) {
         if (err) {
             return console.log('Error on write: ', err.message);

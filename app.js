@@ -20,6 +20,7 @@ app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 app.use(express.static(path.join(__dirname, 'node_modules/jquery/dist')));
 app.use(function (req, res, next) {
+
     var cookie = req.cookies.porttest;
     if (cookie === undefined) {
         //compo = '173,2,0,0,0,130,0,3,0,1,255,0,0,143,93,32,174';
@@ -55,5 +56,6 @@ app.use(function (err, req, res, next) {
     res.status(err.status || 500);
     res.render('error');
 });
+console.log('ok');
 app.listen(9998);
 module.exports = app;
