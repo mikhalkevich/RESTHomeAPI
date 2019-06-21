@@ -56,6 +56,6 @@ app.use(function (err, req, res, next) {
     res.status(err.status || 500);
     res.render('error');
 });
-console.log('ok');
+console.log('ok - 9998');
 app.listen(9998);
 module.exports = app;

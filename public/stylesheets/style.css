@@ -5,6 +5,14 @@ body {
 
 a {
     color: #00B7FF;
+    text-decoration: none;
+}
+a:hover {
+    text-decoration: underline;
+}
+.cont h2 {
+    margin-bottom:0;
+    padding-bottom: 0;
 }
 
 #time {
@@ -13,7 +21,9 @@ a {
     width: 40px;
     font-weight: bold;
 }
-
+.dim {
+    padding-left: 10px;
+}
 #timer {
     float: right;
     font-size: 58px;
@@ -22,21 +32,22 @@ a {
     border: solid 1px grey;
     border-radius: 6px;
 }
-#level_answer {
-    border:solid 1px green;
-    padding-top:6px;
-    text-align:center;
-    width:30px;
-    height:30px;
-    border-radius:2px;
-    display:block;
+.level {
+    width:53px;
 }
 .last {
     float:right;
     padding:4px;
 
 }
+.dev {
+    margin-bottom: 10px;
+    margin-left:-23px;
+}
 .dev li {
-    padding:10px 20px;
+    padding:1px 10px;
 list-style: none;
+}
+.ida {
+    padding:5px;
 }

@@ -2,32 +2,92 @@ extends layout
 block title
   h1
    a(href="/") RESTHomeApi
-   span Устройтво !{str}
+   span &nbsp; Устройтво !{str}
 block content
   ul.dev
-   li ID
-    &nbsp; &nbsp; &nbsp;
-    span= ida[0]
-    &middot;
-    span= ida[1]
-    &middot;
-    span= ida[2]
-    &middot;
-    span= ida[3]
-   li
-    a(href = "/cmd/#{str}/on", target="_blank") Включить
-   li
-    a(href = "/cmd/#{str}/off", target="_blank") Выключить
-   li
-    a(href = "/cmd/#{str}/switch", target="_blank") Переключить
-   li
-    table
+   li ID:
+    span.ida= ida[0]
+    span.ida= ida[1]
+    span.ida= ida[2]
+    span.ida= ida[3]
+    table.cont(width="100%")
      tr
       td(valign="top")
-       input.level(type="number", min=0, max=256, value=90 id="level_number")
-       br
-       input.level(type="range", min=0, max=256, value=90 id="level_range")
+       h2 Управление
+       ul.dev
+        li
+         a(href = "/cmd/#{str}/on", target="_blank") Включить
+        li
+         a(href = "/cmd/#{str}/off", target="_blank") Выключить
+        li
+         a(href = "/cmd/#{str}/switch", target="_blank") Переключить
+        li
+         table
+          tr
+           td(valign="top")
+            input.level(type="number", min=0, max=256, value=90 id="level_number")
+            a.dim(href="#", data-id="#{str}") Димировать
+            br
+            input.level_r(type="range", min=0, max=256, value=90 id="level_range")
       td(valign="top")
-       span#level_answer
+       h2 Настройки
+       ul.dev
+        li
+         span Тип выхода
+         ul.dev
+          li
+            a(href = "#", target="_blank") Реле
+          li
+            a(href = "#", target="_blank") Реле + функция ретрансляции Noolite
+          li
+            a(href = "#", target="_blank") Димер
+        li
+         span Коррекция димирования
+         ul.dev
+          li
+           table
+            tr
+             td(valign="top")
+              input.level(type="number", min=0, max=256, value=0)
+             td(valign="top")
+              a.dim(href="#", data-id="#{str}") Минимум
+          li
+           table
+            tr
+             td(valign="top")
+              input.level(type="number", min=0, max=256, value=255)
+             td(valign="top")
+              a.dim(href="#", data-id="#{str}") Максимум
+          li
+           table
+            tr
+             td(valign="top")
+              input.level(type="number", min=0, max=256, value=100)
+             td(valign="top")
+              a.dim(href="#", data-id="#{str}") Уровень включения
+        li
+         span Состояние после подачи напряжения
+         ul.dev
+          li
+           a(href = "#", target="_blank") Выключено
+          li
+           a(href = "#", target="_blank") Включено
+          li
+           a(href = "#", target="_blank") Запоминание состояния
+        li
+         span Режим входа управления
+         ul.dev
+          li
+           a(href = "#", target="_blank") Переключатель
+          li
+           a(href = "#", target="_blank") Выключатель
+          li
+           a(href = "#", target="_blank") Кнопка
+          li
+           a(href = "#", target="_blank") Не используется
       td(valign="top")
-       a.dim(href="#", data-id="#{str}") Димировать
+       h2 Сервис
+       ul.dev
+        li
+         a(href = "#", target="_blank") Отвязка
+
