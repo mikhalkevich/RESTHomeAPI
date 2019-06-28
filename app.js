@@ -7,7 +7,9 @@ var cookieParser = require('cookie-parser');
 var indexRouter = require('./routes/index');
 var cmdRouter = require('./routes/cmd');
 var getRouter = require('./routes/get');
+var devicesRouter = require('./routes/devices');
 var bindRouter = require('./routes/bind');
+var infoRouter = require('./routes/info');
 var SerialPort = require('serialport');
 var port = new SerialPort('/dev/ttyUSB0', {autoOpen: true});
 var app = express();
@@ -26,7 +28,7 @@ app.use(function (req, res, next) {
         //compo = '173,2,0,0,0,130,0,3,0,1,255,0,0,143,93,32,174';
         compo = '0';
     } else {
-        console.log(cookie);
+        //console.log(cookie);
         compo = cookie.data;
     }
     res.locals = {
@@ -38,8 +40,10 @@ app.use(function (req, res, next) {
 app.use('/', indexRouter);
 app.use('/get', getRouter);
 app.use('/device', getRouter);
+app.use('/devices', devicesRouter);
 app.use('/bind', bindRouter);
 app.use('/cmd', cmdRouter);
+app.use('/info', infoRouter);
 
 // catch 404 and forward to error handler
 app.use(function (req, res, next) {

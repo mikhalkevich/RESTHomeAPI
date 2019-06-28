@@ -30,8 +30,8 @@ function arr_f(a, b, c, d, com, com1, com2, com3, com4, com5, str) {
     var arr = [171, a, b, c, d, com, com1, com2, com3, com4, com5, x, xx, xxx, xxxx, s, 172];
     //var arr = [171, 2, 9, 0, 0, 4, 0, 0, 0, 0, 0, 0, 0, 143, 93, 167, 172];
     //var arr = [171, 2, 9, 0, 0, 4, 0, 0, 0, 0, 0, 0, 0, 143, 93, 166, 172];
-    console.log(x, xx, xxx, xxxx, s, 'summa '+sum);
-    console.log(arr);
+    //console.log(x, xx, xxx, xxxx, s, 'summa '+sum);
+    //console.log(arr);
     return arr;
 }
 
