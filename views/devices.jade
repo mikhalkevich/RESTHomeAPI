@@ -1,0 +1,14 @@
+extends layout
+block title
+  h1
+   a(href="/")= title
+block content
+  ul.dev
+   for one in arr
+    li
+     if one
+      a(href = "/get/#{one}") Открыть
+      &nbsp;&nbsp;
+      span= one
+      &nbsp;&nbsp;
+      a(href = "/bind/#{one}/unbind") &times;

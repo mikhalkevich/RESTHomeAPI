@@ -11,7 +11,13 @@ var devicesRouter = require('./routes/devices');
 var bindRouter = require('./routes/bind');
 var infoRouter = require('./routes/info');
 var SerialPort = require('serialport');
-var port = new SerialPort('/dev/ttyUSB0', {autoOpen: true});
+var port = new SerialPort('/dev/ttyUSB0', {
+    autoopen:true,
+    baudRate: 9600,
+    databits: 8,
+    parity: 'none',
+    stopBits: 1,
+    flowControl: false});
 var app = express();
 
 app.set('views', path.join(__dirname, 'views'));
