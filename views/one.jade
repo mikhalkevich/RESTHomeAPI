@@ -2,14 +2,8 @@ extends layout
 block title
   h1
    a(href="/") RESTHomeApi
-   span &nbsp; Устройтво !{str}
+   span &nbsp; !{track} !{str}
 block content
-  ul.dev
-   li ID:
-    span.ida= ida[0]
-    span.ida= ida[1]
-    span.ida= ida[2]
-    span.ida= ida[3]
     table.cont(width="100%")
      tr
       td(valign="top")
@@ -31,60 +25,88 @@ block content
             input.level_r(type="range", min=0, max=256, value=90 id="level_range")
       td(valign="top")
        h2 Настройки
-       ul.dev
-        li
-         span Тип выхода
+       form.bord(action="")
+        ul.dev
+         li
+          span Тип выхода
+          ul.dev
+           li
+            input(type="radio", name="out", value="rele")
+            Реле
+           li
+            input(type="radio", name="out", value="rele_retranslation")
+            Диммер
+           li
+            input(type="radio", name="out", value="rele_retranslation")
+            Реле + ретранслятор Noolite
+        ul.dev
+         li
+          span Состояние после подачи напряжения
+          ul.dev
+           li
+            input(type="radio", name="state", value="off")
+            Выключено
+           li
+            input(type="radio", name="state", value="on")
+            Включено
+           li
+            input(type="radio", name="state", value="remember")
+            Запоминание состояния
+        ul.dev
+         li
+          span Прием команд Noolite
+          ul.dev
+           li
+            input(type="radio", name="command", value="on")
+            Разрешен (включен)
+           li
+            input(type="radio", name="command", value="off")
+            Запрещен (выключен)
+        ul.dev
+         li
+          span Вход внешнего упрвления
+          ul.dev
+           li
+            input(type="radio", name="control", value="on")
+            Не использовать
+           li
+            input(type="radio", name="control", value="off")
+            Выключатель
+           li
+            input(type="radio", name="control", value="off")
+            Кнопка
+           li
+            input(type="radio", name="control", value="off")
+            Переключатель
+        button.sender2(type="submit") Сохранить
+        br(style="clear:both")
+        form.bord(action="#")
          ul.dev
+          li.tt
+           span Уровни димирования
           li
-            a(href = "#", target="_blank") Реле
+           input.level(name="level_min", type="number", min=0, max=256, value=0)
+           span.service Минимум
           li
-            a(href = "#", target="_blank") Реле + функция ретрансляции Noolite
-          li
-            a(href = "#", target="_blank") Димер
-        li
-         span Коррекция димирования
+           input.level(name="level_max", type="number", min=0, max=256, value=0)
+           span.service Максимум
+         button.sender2(type="submit") Сохранить
+        br(style="clear:both")
+        form.bord(action="#")
          ul.dev
+          li.tt
+           span Уровнень включения диммера
           li
-           table
-            tr
-             td(valign="top")
-              input.level(type="number", min=0, max=256, value=0)
-             td(valign="top")
-              a.dim(href="#", data-id="#{str}") Минимум
-          li
-           table
-            tr
-             td(valign="top")
-              input.level(type="number", min=0, max=256, value=255)
-             td(valign="top")
-              a.dim(href="#", data-id="#{str}") Максимум
-          li
-           table
-            tr
-             td(valign="top")
-              input.level(type="number", min=0, max=256, value=100)
-             td(valign="top")
-              a.dim(href="#", data-id="#{str}") Уровень включения
-        li
-         span Состояние после подачи напряжения
+           input.level(name="level_dimmer", type="number", min=0, max=256, value=0)
+         button.sender2(type="submit") Сохранить
+        br(style="clear:both")
+        form.bord(action="#")
          ul.dev
+          li.tt
+           span Задержка ретрансляции Noolite
           li
-           a(href = "#", target="_blank") Выключено
-          li
-           a(href = "#", target="_blank") Включено
-          li
-           a(href = "#", target="_blank") Запоминание состояния
-        li
-         span Режим входа управления
-         ul.dev
-          li
-           a(href = "#", target="_blank") Переключатель
-          li
-           a(href = "#", target="_blank") Выключатель
-          li
-           a(href = "#", target="_blank") Кнопка
-          li
-           a(href = "#", target="_blank") Не используется
+           input.level(name="level_re", type="number", min=0, max=256, value=0)
+         button.sender2(type="submit") Сохранить
       td(valign="top")
        h2 Информация
        ul.dev
@@ -96,10 +118,21 @@ block content
          a(href="/info/#{str}/memory", target="_blank") Память устройства
         li
          a(href="/info/#{str}/settings", target="_blank") Настройки
+        li
+         a(href="#", target="_blank") Уровни димирования
+         span.service минимум, максимум
+        li
+         a(href="#", target="_blank") Уровень включения
+
        h2 Сервис
        ul.dev
         li
-         a(href = "#", target="_blank") Отвязать MTRF
+         a(href = "/bind/#{str}/unbind", target="_blank") Отвязать от MTRF
+         span.service необходимо включить сервисный режим
         li
-         a(href = "#", target="_blank") Отвязать все устройства Noolite
+         a(href = "#", target="_blank") Очистить память от устройств Noolite
+        li
+         a(href = "/service/#{str}", target="_blank") Включить сервисный режим
+        li
+         a(href = "/service/#{str}/off", target="_blank") Выключить сервисный режим
 

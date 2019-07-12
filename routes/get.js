@@ -1,5 +1,6 @@
 var express = require('express');
 var router = express.Router();
+
 router.get('/', function (req, res, next) {
     //var arr = [171, 2, 0, 0, 0, 128, 0, 0, 0, 0, 0, 0, 0, 0, 0, 45, 172];
     var json = res.locals.port.read();
@@ -8,8 +9,12 @@ router.get('/', function (req, res, next) {
 router.get('/:id', function (req, res, next) {
     var str = req.params.id;
     var ida = str.split("-");
-    var answer = res.locals.port.read();
-    res.render('one', { answer: answer, ida: ida, str: str});
+    if(req.query.track){
+        var track = req.query.track;
+    }else{
+        var track = 'unknown';
+    }
+    res.render('one', {ida: ida, str: str, track: track});
 });
 router.get('/:id/settings', function (req, res, next) {
     var str = req.params.id;

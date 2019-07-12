@@ -40,6 +40,9 @@ a:hover {
     padding:4px;
 
 }
+.service {
+    padding-left: 5px;
+}
 .dev {
     margin-bottom: 10px;
     margin-left:-23px;
@@ -50,4 +53,13 @@ list-style: none;
 }
 .ida {
     padding:5px;
+}
+.sender {
+    float:right;
+}
+.tt {
+    margin-bottom: 6px;
+}
+.sender2 {
+    margin-left:25px;
 }

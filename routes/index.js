@@ -8,8 +8,16 @@ router.get('/', function (req, res, next) {
             myError(err, res);
         } else {
             var str = data.toString();
-            arr = str.split("\n");
-            res.render('index', {title: 'RESTHomeApi', arr: arr});
+            arrs = str.split("\n");
+            var arr = [];
+            var arr_name = [];
+            arrs.forEach(function(element) {
+                var art = element.split(" ");
+                arr.push(art[2]);
+                arr_name.push(art[1]);
+
+            });
+            res.render('index', {title: 'RESTHomeApi', arr: arr, arr_name: arr_name});
         }
     });
 

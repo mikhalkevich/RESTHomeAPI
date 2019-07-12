@@ -2,6 +2,7 @@ var express = require('express');
 var mtrf = require('../libs/mtrf');
 var router = express.Router();
 var fs = require('fs');
+var one = require('../libs/name');
 
 router.get('/', function (req, res, next) {
     var arr = [171, 2, 0, 0, 0, 15, 0, 0, 0, 0, 0, 0, 0, 0, 0, 188, 172];
@@ -16,7 +17,7 @@ router.get('/', function (req, res, next) {
     if(!dev){
         dev = res.locals.port.read([]);
     }
-    var str = dev[11] + '-' + dev[12] + '-' + dev[13] + '-' + dev[14] + '\n';
+    var str = one(dev[7]) + ' ' + dev[11] + '-' + dev[12] + '-' + dev[13] + '-' + dev[14] + '\n';
     console.log(str);
     fs.appendFile("data.txt", str, function (error) {
         if (error) throw error; // если возникла ошибка

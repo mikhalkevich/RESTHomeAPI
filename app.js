@@ -8,6 +8,7 @@ var indexRouter = require('./routes/index');
 var cmdRouter = require('./routes/cmd');
 var getRouter = require('./routes/get');
 var devicesRouter = require('./routes/devices');
+var serviceRouter = require('./routes/service');
 var bindRouter = require('./routes/bind');
 var infoRouter = require('./routes/info');
 var SerialPort = require('serialport');
@@ -49,6 +50,7 @@ app.use('/device', getRouter);
 app.use('/devices', devicesRouter);
 app.use('/bind', bindRouter);
 app.use('/cmd', cmdRouter);
+app.use('/service', serviceRouter);
 app.use('/info', infoRouter);
 
 // catch 404 and forward to error handler

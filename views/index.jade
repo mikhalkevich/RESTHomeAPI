@@ -4,19 +4,22 @@ block title
    a(href="/")= title
 block content
   ul.dev
-   for one in arr
-    li
-     a(href = "/get/#{one}") Открыть
-     &nbsp;&nbsp;
-     span= one
-     &nbsp;&nbsp;
-     a(href = "/bind/#{one}/unbind") &times;
+   for one, index in arr
+    if one
+     li
+      a(href = "/get/#{one}?track=#{arr_name[index]}")
+       &nbsp;
+       b= arr_name[index]
+      &nbsp;&nbsp;
+      span= one
+      &nbsp;&nbsp;
+      a(href = "/bind/#{one}/unbind") &times;
 
   ul.dev
    li
      a(href = "/bind") Привязать новое устройство
    li
-     a(href = "/devices" target="_blank") Прослушать подключенные устройства
+     a(href = "/devices" target="_blank") Найти подключенные устройства
    li /device - просмотр всех подключенных устройств
    li /device/:id - просмотр подключенного устройства по id
    li /cmd/:id/on - включить устройство по id
