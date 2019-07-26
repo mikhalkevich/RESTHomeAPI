@@ -10,11 +10,11 @@ block content
        h2 Управление
        ul.dev
         li
-         a(href = "/cmd/#{str}/on", target="_blank") Включить
+         a(href = "/noolitef/cmd/#{chanel}/#{str}/on", target="_blank") Включить
         li
-         a(href = "/cmd/#{str}/off", target="_blank") Выключить
+         a(href = "/noolitef/cmd/#{chanel}/#{str}/off", target="_blank") Выключить
         li
-         a(href = "/cmd/#{str}/switch", target="_blank") Переключить
+         a(href = "/noolitef/cmd/#{chanel}/#{str}/switch", target="_blank") Переключить
         li
          table
           tr
@@ -25,7 +25,7 @@ block content
             input.level_r(type="range", min=0, max=256, value=90 id="level_range")
       td(valign="top")
        h2 Настройки
-       form.bord(action="")
+       form.bord(action="/settings", method="post")
         ul.dev
          li
           span Тип выхода
@@ -54,7 +54,7 @@ block content
             Запоминание состояния
         ul.dev
          li
-          span Прием команд Noolite
+          span Выполнение команд временного включения
           ul.dev
            li
             input(type="radio", name="command", value="on")
@@ -79,8 +79,8 @@ block content
             input(type="radio", name="control", value="off")
             Переключатель
         button.sender2(type="submit") Сохранить
-        br(style="clear:both")
-        form.bord(action="#")
+       br(style="clear:both")
+       form.bord(action="#")
          ul.dev
           li.tt
            span Уровни димирования
@@ -92,7 +92,7 @@ block content
            span.service Максимум
          button.sender2(type="submit") Сохранить
         br(style="clear:both")
-        form.bord(action="#")
+       form.bord(action="#")
          ul.dev
           li.tt
            span Уровнень включения диммера
@@ -100,7 +100,7 @@ block content
            input.level(name="level_dimmer", type="number", min=0, max=256, value=0)
          button.sender2(type="submit") Сохранить
         br(style="clear:both")
-        form.bord(action="#")
+       form.bord(action="#")
          ul.dev
           li.tt
            span Задержка ретрансляции Noolite
@@ -122,7 +122,9 @@ block content
          a(href="#", target="_blank") Уровни димирования
          span.service минимум, максимум
         li
-         a(href="#", target="_blank") Уровень включения
+         a(href="#", target="_blank") Уровнень включения диммера
+        li
+         a(href="#", target="_blank") Задержка ретрансляции Noolite
 
        h2 Сервис
        ul.dev

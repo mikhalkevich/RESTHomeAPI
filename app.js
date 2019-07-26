@@ -3,14 +3,18 @@ var express = require('express');
 var path = require('path');
 var cookieParser = require('cookie-parser');
 
+//noolitef
+var indexRouter = require('./routes/noolitef/index');
+var cmdRouter = require('./routes/noolitef/cmd');
+var getRouter = require('./routes/noolitef/get');
+var devicesRouter = require('./routes/noolitef/devices');
+var serviceRouter = require('./routes/noolitef/service');
+var bindRouter = require('./routes/noolitef/bind');
+var infoRouter = require('./routes/noolitef/info');
+var settingsRouter = require('./routes/noolitef/settings');
+var listenerRouter = require('./routes/listener');
+//
 
-var indexRouter = require('./routes/index');
-var cmdRouter = require('./routes/cmd');
-var getRouter = require('./routes/get');
-var devicesRouter = require('./routes/devices');
-var serviceRouter = require('./routes/service');
-var bindRouter = require('./routes/bind');
-var infoRouter = require('./routes/info');
 var SerialPort = require('serialport');
 var port = new SerialPort('/dev/ttyUSB0', {
     autoopen:true,
@@ -44,14 +48,18 @@ app.use(function (req, res, next) {
     }
     next();
 });
+//noolitef
 app.use('/', indexRouter);
-app.use('/get', getRouter);
+app.use('/noolitef', getRouter);
 app.use('/device', getRouter);
 app.use('/devices', devicesRouter);
 app.use('/bind', bindRouter);
-app.use('/cmd', cmdRouter);
+app.use('/noolitef/cmd/:chanel/', cmdRouter);
 app.use('/service', serviceRouter);
 app.use('/info', infoRouter);
+app.use('/settings', settingsRouter);
+app.use('/listener', listenerRouter);
+//
 
 // catch 404 and forward to error handler
 app.use(function (req, res, next) {

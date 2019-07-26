@@ -1,7 +1,7 @@
 var express = require('express');
 var fs = require('fs');
-var mtrf = require('../libs/mtrf');
-var one = require('../libs/name');
+var mtrf = require('../../libs/mtrf');
+var one = require('../../libs/name');
 var router = express.Router();
 
 router.get('/', function (req, res, next) {

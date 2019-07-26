@@ -1,8 +1,8 @@
 var express = require('express');
-var mtrf = require('../libs/mtrf');
+var mtrf = require('../../libs/mtrf');
 var router = express.Router();
 var fs = require('fs');
-var one = require('../libs/name');
+var one = require('../../libs/name');
 
 router.get('/', function (req, res, next) {
     var arr = [171, 2, 0, 0, 0, 15, 0, 0, 0, 0, 0, 0, 0, 0, 0, 188, 172];

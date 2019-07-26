@@ -7,19 +7,21 @@ block content
    for one, index in arr
     if one
      li
-      a(href = "/get/#{one}?track=#{arr_name[index]}")
+      a(href = "/noolitef/#{arr_chanel[index]}/#{one}?params=#{arr_name[index]}")
        &nbsp;
        b= arr_name[index]
       &nbsp;&nbsp;
       span= one
       &nbsp;&nbsp;
       a(href = "/bind/#{one}/unbind") &times;
-
+  .listener
+   b
+    a(href="/listener") Прослушиватель
   ul.dev
    li
      a(href = "/bind") Привязать новое устройство
    li
-     a(href = "/devices" target="_blank") Найти подключенные устройства
+     a(href = "/devices") Найти подключенные устройства
    li /device - просмотр всех подключенных устройств
    li /device/:id - просмотр подключенного устройства по id
    li /cmd/:id/on - включить устройство по id
@@ -27,3 +29,4 @@ block content
    li /cmd/:id/switch - выключить если включено, включить если выключено по id
    li /cmd/:id/level/:lev - димировать устройвтво
    li /bind - привязка нового устройства
+

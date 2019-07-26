@@ -1,7 +1,7 @@
 var express = require('express');
-var mtrf = require('../libs/mtrf');
-var hex = require('../libs/hex');
-var jsons = require('../libs/json');
+var mtrf = require('../../libs/mtrf');
+var hex = require('../../libs/hex');
+var jsons = require('../../libs/json');
 var router = express.Router();
 router.get('/:id', function (req, res, next) {
     var arr = mtrf(2, 8, 0, 0, 131, 0, 1, 0, 0, 0, req.params.id);
