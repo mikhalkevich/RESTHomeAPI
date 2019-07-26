@@ -17,7 +17,7 @@ router.get('/', function (req, res, next) {
     if(!dev){
         dev = res.locals.port.read([]);
     }
-    var str = one(dev[7]) + ' ' + dev[11] + '-' + dev[12] + '-' + dev[13] + '-' + dev[14] + '\n';
+    var str =  dev[4] + ', ' + one(dev[7]) + ', ' + dev[11] + '-' + dev[12] + '-' + dev[13] + '-' + dev[14] + '\n';
     console.log(str);
     fs.appendFile("data.txt", str, function (error) {
         if (error) throw error; // если возникла ошибка

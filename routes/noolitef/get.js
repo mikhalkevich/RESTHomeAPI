@@ -9,8 +9,8 @@ router.get('/', function (req, res, next) {
 router.get('/:id', function (req, res, next) {
     var str = req.params.id;
     var ida = str.split("-");
-    if(req.query.track){
-        var track = req.query.track;
+    if(req.query.params){
+        var track = req.query.params;
     }else{
         var track = 'unknown';
     }
