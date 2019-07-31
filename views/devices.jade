@@ -1,16 +1,18 @@
 extends layout
+block scripts
+ script(src='/javascripts/devices.js')
 block title
   h1
-   a(href="/") RestHomeApi
+   a(href="/") RESTHomeApi
    &nbsp;&nbsp;
    span= title
 block content
-  ul.dev
-   for one in arr
-    li
-     if one
-      a(href = "/get/#{one}") Открыть
-      &nbsp;&nbsp;
-      span= one
-      &nbsp;&nbsp;
-      a(href = "/bind/#{one}/unbind") &times;
+ ul.dev
+   li
+    span канал
+        - var n = 0
+        select#chanel(name="chanel")
+         while n < 60
+          option(value="#{n}")= n++
+        button#finder Найти подключенные устройства
+ iframe(src="/listener", width="100%", height="333px")
