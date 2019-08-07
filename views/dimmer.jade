@@ -1,0 +1,10 @@
+extends layout
+block title
+  h1
+   a(href="/") NooliteF
+   span &nbsp; /
+   a(href="/noolitef/#{str}?name=#{track}&chanel=#{chanel}") !{track} !{hex_answer}
+   span &nbsp; Выключить
+block content
+
+  pre.json {hex: #{hex_answer}, status: #{status}}

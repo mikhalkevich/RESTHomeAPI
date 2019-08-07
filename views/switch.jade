@@ -1,0 +1,10 @@
+extends layout
+block title
+  h1
+   a(href="/") NooliteF
+   span &nbsp; /
+   a(href="/noolitef/#{str}?name=#{track}&chanel=#{chanel}")!{track} !{hex_answer}
+   span &nbsp; Состояние
+block content
+
+  iframe(src="/listener", width="100%", height="333px")
