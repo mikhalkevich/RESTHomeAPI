@@ -1,8 +1,8 @@
 extends layout
 block title
   h1
-   a(href="/") RESTHomeApi
-   span &nbsp; !{track} !{str}
+   a(href="/") NooliteF
+   span &nbsp; / !{track} !{hex_answer}
 block content
     table.cont(width="100%")
      tr
@@ -10,19 +10,13 @@ block content
        h2 Управление
        ul.dev
         li
-         a(href = "/noolitef/cmd/#{chanel}/#{str}/on", target="_blank") Включить
+         a(href = "/noolitef/cmd/#{str}/on?name=#{track}&chanel=#{chanel}") Включить
         li
-         a(href = "/noolitef/cmd/#{chanel}/#{str}/off", target="_blank") Выключить
+         a(href = "/noolitef/cmd/#{str}/off?name=#{track}&chanel=#{chanel}") Выключить
         li
-         a(href = "/noolitef/cmd/#{chanel}/#{str}/switch", target="_blank") Переключить
+         a(href = "/noolitef/cmd/#{str}/switch?name=#{track}&chanel=#{chanel}") Переключить
         li
-         table
-          tr
-           td(valign="top")
-            input.level(type="number", min=0, max=256, value=90 id="level_number")
-            a.dim(href="#", data-id="#{str}") Димировать
-            br
-            input.level_r(type="range", min=0, max=256, value=90 id="level_range")
+         a(href = "/noolitef/cmd/#{str}/dimmer?name=#{track}&chanel=#{chanel}") Димировать
       td(valign="top")
        h2 Настройки
        form.bord(action="/settings", method="post")
@@ -111,21 +105,20 @@ block content
        h2 Информация
        ul.dev
         li
-         a(href="/info/#{str}/status", target="_blank") Состояние
+         a(href="/noolitef/info/#{str}/status?name=#{track}&chanel=#{chanel}") Состояние
         li
-         a(href="/info/#{str}/more", target="_blank") Дополнительная информация
+         a(href="/noolitef/info/#{str}/more?name=#{track}") Дополнительная информация
         li
-         a(href="/info/#{str}/memory", target="_blank") Память устройства
+         a(href="/noolitef/info/#{str}/memory?name=#{track}") Память устройства
         li
-         a(href="/info/#{str}/settings", target="_blank") Настройки
+         a(href="/noolitef/info/#{str}/settings?name=#{track}") Настройки
         li
-         a(href="#", target="_blank") Уровни димирования
+         a(href="/#{str}/info/dimer_levels?name=#{track}") Уровни димирования
          span.service минимум, максимум
         li
-         a(href="#", target="_blank") Уровнень включения диммера
+         a(href="/noolitef/info/#{str}/start_level?name=#{track}") Уровнень включения диммера
         li
-         a(href="#", target="_blank") Задержка ретрансляции Noolite
-
+         a(href="/noolitef/info/#{str}/retlanslator?name=#{track}") Задержка ретрансляции Noolite
        h2 Сервис
        ul.dev
         li

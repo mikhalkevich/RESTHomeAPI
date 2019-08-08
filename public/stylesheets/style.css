@@ -63,3 +63,13 @@ list-style: none;
 .sender2 {
     margin-left:25px;
 }
+.slovo {
+    padding:5px;
+}
+.writer {
+    font-weithg:bold;
+    padding:5px;
+}
+#writer {
+    margin-top:20px;
+}

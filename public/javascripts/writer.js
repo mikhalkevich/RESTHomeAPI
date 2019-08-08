@@ -2,9 +2,12 @@ $(function () {
     function func() {
         $.ajax({
             method: 'get',
-            url: '/listener/more',
+            url: '/listener/writer',
             success: function (data) {
-                $('.empty').append(data);
+                var chanel = data.chanel;
+                var status = data.status;
+                $('#json_chanel').text(chanel);
+                $('#json_status').text(status);
             }
         })
     }

@@ -2,6 +2,7 @@ var express = require('express');
 var mtrf = require('../../libs/mtrf');
 var hex = require('../../libs/hex');
 var jsons = require('../../libs/json');
+var read_answer = require('../../libs/answer');
 var router = express.Router();
 
 router.get('/:id/status', function (req, res, next) {
@@ -11,23 +12,8 @@ router.get('/:id/status', function (req, res, next) {
             return console.log('Error on write: ', err.message);
         }
     });
-    var por = res.locals.port.read([]);
-    res.cookie('porttest', por, {maxAge: 900000, httpOnly: true});
-    console.log(req.cookies.porttest, por);
-    var str = hex(req.params.id);
-    var state = 'off';
-    var firm = 1;
-    var brightness = 0;
-
-    if (por[9] == 1) {
-        var state = 'on';
-        var brightness = 100;
-    }
-    var model = por[7];
-
-    var json_ans = jsons(str, firm, model, state, brightness);
-
-    res.json(json_ans);
+    var real_answer = read_answer(req, res);
+    res.render('status', real_answer);
 });
 
 router.get('/:id/more', function (req, res, next) {

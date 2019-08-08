@@ -20,7 +20,7 @@ router.get('/', function (req, res, next) {
                 arr_name.push(art[1]);
                 arr_chanel.push(art[0]);
             });
-            res.render('index', {title: 'RESTHomeApi', arr: arr, arr_name: arr_name, arr_chanel: arr_chanel});
+            res.render('index', {title: 'NooliteF', arr: arr, arr_name: arr_name, arr_chanel: arr_chanel});
         }
     });
 

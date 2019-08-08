@@ -1,10 +1,19 @@
 extends layout
+block scripts
+ script(src='/javascripts/writer.js')
 block title
   h1
    a(href="/") NooliteF
    span &nbsp; /
    a(href="/noolitef/#{str}?name=#{track}&chanel=#{chanel}") !{track} !{hex_answer}
-   span &nbsp; Выключить
+   span &nbsp; Димировать
 block content
-
-  pre.json {hex: #{hex_answer}, status: #{status}}
+  form(action="/noolitef/cmd/#{str}/dimmer", method="post")
+   input.level(type="number", min=0, max=256, value=90 id="level_number" name="level")
+   button.dim(href="#", data-id="#{str}", type="submit") Димировать
+  .json#writer {
+   span.slovo#status статутс :
+   span.writer#json_status ,
+   span.slovo#chanel канал :
+   span.writer#json_chanel
+   span }

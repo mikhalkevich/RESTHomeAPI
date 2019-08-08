@@ -27,5 +27,12 @@ router.get('/more', function (req, res, next) {
     }
     var arr = por.toJSON().data;
     res.send(json);
-})
+});
+router.get('/writer', function(req, res){
+    var por = res.locals.port.read();
+    json = [];
+    var jsn = {'chanel':por[4], 'status':por[10]};
+    console.log(jsn);
+    res.send(jsn);
+});
 module.exports = router;

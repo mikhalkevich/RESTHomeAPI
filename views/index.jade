@@ -7,7 +7,7 @@ block content
    for one, index in arr
     if one
      li
-      a(href = "/noolitef/#{arr_chanel[index]}/#{one}?params=#{arr_name[index]}")
+      a(href = "/noolitef/#{one}?chanel=#{arr_chanel[index]}&name=#{arr_name[index]}")
        &nbsp;
        b= arr_name[index]
       &nbsp;&nbsp;
@@ -16,6 +16,9 @@ block content
       a(href = "/bind/#{one}/unbind") &times;
   ul.dev
    li
-     a(href = "/bind") Подключить новое устройство
+     a(href="/devices/") Найти привязанные устройства
    li
-     a(href="/devices/") Найти подключенные устройства
+     a(href="/devices/json") Смотреть привязанные устройства
+   li
+     a(href = "/bind") Привязать новое устройство
+

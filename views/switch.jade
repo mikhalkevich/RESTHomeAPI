@@ -1,10 +1,17 @@
 extends layout
+block scripts
+ script(src='/javascripts/writer.js')
 block title
   h1
    a(href="/") NooliteF
    span &nbsp; /
-   a(href="/noolitef/#{str}?name=#{track}&chanel=#{chanel}")!{track} !{hex_answer}
-   span &nbsp; Состояние
+   a(href="/noolitef/#{str}?name=#{track}&chanel=#{chanel}") !{track} !{hex_answer}
+   span &nbsp; Переключить
 block content
 
-  iframe(src="/listener", width="100%", height="333px")
+  .json#writer {
+   span.slovo#status статутс :
+   span.writer#json_status ,
+   span.slovo#chanel канал :
+   span.writer#json_chanel
+   span }
