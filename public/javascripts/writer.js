@@ -4,6 +4,7 @@ $(function () {
             method: 'get',
             url: '/listener/writer',
             success: function (data) {
+                console.log(data);
                 var chanel = data.chanel;
                 var status = data.status;
                 $('#json_chanel').text(chanel);

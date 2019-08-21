@@ -1,0 +1,70 @@
+extends layout
+block scripts
+ script(src='/javascripts/writer.js')
+block title
+  h1
+   a(href="/") NooliteF
+   span &nbsp; /
+   a(href="/noolitef/#{str}?name=#{track}&chanel=#{chanel}") !{track} !{hex_answer}
+   span &nbsp; Базовые настройки
+block content
+       form.bord(action="/settings", method="post")
+        ul.dev
+         li
+          span Тип выхода
+          ul.dev
+           li
+            input(type="radio", name="out", value="rele")
+            Реле
+           li
+            input(type="radio", name="out", value="rele_retranslation")
+            Диммер
+           li
+            input(type="radio", name="out", value="rele_retranslation")
+            Реле + ретранслятор Noolite
+        ul.dev
+         li
+          span Состояние после подачи напряжения
+          ul.dev
+           li
+            input(type="radio", name="state", value="off")
+            Выключено
+           li
+            input(type="radio", name="state", value="on")
+            Включено
+           li
+            input(type="radio", name="state", value="remember")
+            Запоминание состояния
+        ul.dev
+         li
+          span Выполнение команд временного включения
+          ul.dev
+           li
+            input(type="radio", name="command", value="on")
+            Разрешен (включен)
+           li
+            input(type="radio", name="command", value="off")
+            Запрещен (выключен)
+        ul.dev
+         li
+          span Вход внешнего упрвления
+          ul.dev
+           li
+            input(type="radio", name="control", value="on")
+            Не использовать
+           li
+            input(type="radio", name="control", value="off")
+            Выключатель
+           li
+            input(type="radio", name="control", value="off")
+            Кнопка
+           li
+            input(type="radio", name="control", value="off")
+            Переключатель
+        button.sender2(type="submit") Сохранить
+        .json#writer {
+         span.slovo#status статутс :
+         span.writer#json_status ,
+         span.slovo#chanel канал :
+         span.writer#json_chanel
+         span }

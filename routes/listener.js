@@ -8,6 +8,7 @@ router.get('/', function (req, res, next) {
 });
 router.get('/more', function (req, res, next) {
     var por = res.locals.port.read();
+    var array = fs.readFileSync('data.txt').toString().split("\n");
     json = [];
     if (por) {
         if (por != undefined) {
@@ -19,19 +20,35 @@ router.get('/more', function (req, res, next) {
                         var jsn2 = por[4 + b] + ', ' + one(por[7 + b]) + ', ' + por[11 + b] + '-' + por[12 + b] + '-' + por[13 + b] + '-' + por[14 + b];
                         console.log(jsn2);
                         json.push(jsn2 + '<br />');
+                        if(array.indexOf(jsn2) < 0){
+                            fs.appendFile("data.txt", jsn2+'\n', function (error) {
+                                if (error) throw error; // если возникла ошибка
+                                console.log("Запись файла завершена. Содержимое файла:");
+                            });
+                        }
                     }
                 }
                 var b = 17 * a;
             }
         }
     }
-    var arr = por.toJSON().data;
+    //var arr = por.toJSON().data;
     res.send(json);
 });
 router.get('/writer', function(req, res){
     var por = res.locals.port.read();
+    var status;
     json = [];
-    var jsn = {'chanel':por[4], 'status':por[10]};
+    if(por){
+        if(por[10] == 0){
+            status = 'off';
+        }else if(por[10] == 255){
+            status = 'on';
+        }else{
+            status = por[10];
+        }
+    }
+    var jsn = {'chanel':por[4], 'status':status};
     console.log(jsn);
     res.send(jsn);
 });

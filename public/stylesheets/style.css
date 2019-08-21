@@ -2,7 +2,9 @@ body {
     padding: 50px;
     font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
 }
-
+h1 {
+    font-size:33px;
+}
 a {
     color: #00B7FF;
     text-decoration: none;
@@ -14,7 +16,10 @@ a:hover {
     margin-bottom:0;
     padding-bottom: 0;
 }
-
+.main {
+    margin-top:20px;
+    padding-top:20px;
+}
 #time {
     padding-top: 5px;
     padding-top: 5px;

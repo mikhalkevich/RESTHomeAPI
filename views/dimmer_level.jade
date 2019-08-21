@@ -1,0 +1,25 @@
+extends layout
+block scripts
+ script(src='/javascripts/writer.js')
+block title
+  h1
+   a(href="/") NooliteF
+   span &nbsp; /
+   a(href="/noolitef/#{str}?name=#{track}&chanel=#{chanel}") !{track} !{hex_answer}
+   span &nbsp; Уровни димирования
+block content
+       form.bord(action="#")
+         ul.dev
+          li
+           input.level(name="level_min", type="number", min=0, max=256, value=0)
+           span.service Минимум
+          li
+           input.level(name="level_max", type="number", min=0, max=256, value=0)
+           span.service Максимум
+         button.sender2(type="submit") Сохранить
+       .json#writer {
+         span.slovo#status статутс :
+         span.writer#json_status ,
+         span.slovo#chanel канал :
+         span.writer#json_chanel
+         span }

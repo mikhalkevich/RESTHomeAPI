@@ -47,7 +47,7 @@ app.use('/bind', bindRouter);
 app.use('/noolitef/cmd/', cmdRouter);
 app.use('/noolitef/info/', infoRouter);
 app.use('/service', serviceRouter);
-app.use('/settings', settingsRouter);
+app.use('/noolitef/settings', settingsRouter);
 app.use('/listener', listenerRouter);
 //
 

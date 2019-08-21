@@ -4,9 +4,10 @@ block title
    a(href="/") NooliteF
    span &nbsp; / !{track} !{hex_answer}
 block content
-    table.cont(width="100%")
-     tr
-      td(valign="top")
+   div.main
+    div.container
+     div(class="row")
+      div(class="col-md-3")
        h2 Управление
        ul.dev
         li
@@ -17,91 +18,20 @@ block content
          a(href = "/noolitef/cmd/#{str}/switch?name=#{track}&chanel=#{chanel}") Переключить
         li
          a(href = "/noolitef/cmd/#{str}/dimmer?name=#{track}&chanel=#{chanel}") Димировать
-      td(valign="top")
+        li
+         a(href = "#") Включить на время
+      div(class="col-md-3")
        h2 Настройки
-       form.bord(action="/settings", method="post")
-        ul.dev
-         li
-          span Тип выхода
-          ul.dev
-           li
-            input(type="radio", name="out", value="rele")
-            Реле
-           li
-            input(type="radio", name="out", value="rele_retranslation")
-            Диммер
-           li
-            input(type="radio", name="out", value="rele_retranslation")
-            Реле + ретранслятор Noolite
-        ul.dev
-         li
-          span Состояние после подачи напряжения
-          ul.dev
-           li
-            input(type="radio", name="state", value="off")
-            Выключено
-           li
-            input(type="radio", name="state", value="on")
-            Включено
-           li
-            input(type="radio", name="state", value="remember")
-            Запоминание состояния
-        ul.dev
-         li
-          span Выполнение команд временного включения
-          ul.dev
-           li
-            input(type="radio", name="command", value="on")
-            Разрешен (включен)
-           li
-            input(type="radio", name="command", value="off")
-            Запрещен (выключен)
-        ul.dev
-         li
-          span Вход внешнего упрвления
-          ul.dev
-           li
-            input(type="radio", name="control", value="on")
-            Не использовать
-           li
-            input(type="radio", name="control", value="off")
-            Выключатель
-           li
-            input(type="radio", name="control", value="off")
-            Кнопка
-           li
-            input(type="radio", name="control", value="off")
-            Переключатель
-        button.sender2(type="submit") Сохранить
-       br(style="clear:both")
-       form.bord(action="#")
-         ul.dev
-          li.tt
-           span Уровни димирования
-          li
-           input.level(name="level_min", type="number", min=0, max=256, value=0)
-           span.service Минимум
-          li
-           input.level(name="level_max", type="number", min=0, max=256, value=0)
-           span.service Максимум
-         button.sender2(type="submit") Сохранить
-        br(style="clear:both")
-       form.bord(action="#")
-         ul.dev
-          li.tt
-           span Уровнень включения диммера
-          li
-           input.level(name="level_dimmer", type="number", min=0, max=256, value=0)
-         button.sender2(type="submit") Сохранить
-        br(style="clear:both")
-       form.bord(action="#")
-         ul.dev
-          li.tt
-           span Задержка ретрансляции Noolite
-          li
-           input.level(name="level_re", type="number", min=0, max=256, value=0)
-         button.sender2(type="submit") Сохранить
-      td(valign="top")
+       ul.dev
+        li
+         a(href = "/noolitef/settings/#{str}/base?name=#{track}&chanel=#{chanel}") Базовые настройки
+        li
+         a(href = "/noolitef/settings/#{str}/dimmer_level?name=#{track}&chanel=#{chanel}") Уровни димирования
+        li
+         a(href = "/noolitef/settings/#{str}/dimmer_level_on?name=#{track}&chanel=#{chanel}") Уровень включения диммера
+        li
+         a(href = "/noolitef/settings/#{str}/retranslate?name=#{track}&chanel=#{chanel}") Задержка ретрансляции
+      div(class="col-md-3")
        h2 Информация
        ul.dev
         li
@@ -119,6 +49,7 @@ block content
          a(href="/noolitef/info/#{str}/start_level?name=#{track}") Уровнень включения диммера
         li
          a(href="/noolitef/info/#{str}/retlanslator?name=#{track}") Задержка ретрансляции Noolite
+      div(class="col-md-3")
        h2 Сервис
        ul.dev
         li
