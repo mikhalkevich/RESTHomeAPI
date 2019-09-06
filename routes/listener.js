@@ -17,7 +17,7 @@ router.get('/more', function (req, res, next) {
                 var strs = por[b] + '-' + por[1 + b] + '-' + por[2 + b] + '-' + por[3 + b] + '-' + por[4 + b] + '-' + por[5 + b] + '-' + por[6 + b] + '-' + por[7 + b] + '-' + por[8 + b] + '-' + por[9 + b] + '-' + por[10 + b] + '-' + por[11 + b] + '-' + por[12 + b] + '-' + por[13 + b] + '-' + por[14 + b] + '-' + por[15 + b] + '-' + por[16 + b];
                 if (por[b] != undefined) {
                     if (por[16 + b] > 0 && por[15 + b] > 0 && por[14 + b] > 0 && por[13 + b] > 0) {
-                        var jsn2 = por[4 + b] + ', ' + one(por[7 + b]) + ', ' + por[11 + b] + '-' + por[12 + b] + '-' + por[13 + b] + '-' + por[14 + b];
+                        var jsn2 = por[4 + b] + ',' + one(por[7 + b]) + ',' + por[11 + b] + '-' + por[12 + b] + '-' + por[13 + b] + '-' + por[14 + b];
                         console.log(jsn2);
                         json.push(jsn2 + '<br />');
                         if(array.indexOf(jsn2) < 0){
@@ -37,9 +37,15 @@ router.get('/more', function (req, res, next) {
 });
 router.get('/writer', function(req, res){
     var por = res.locals.port.read();
-    var status;
+    var status, d0;
     json = [];
     if(por){
+        if(por[10] == 1){
+            d0 = 'on';
+        }else{
+            d0 = 'off'
+        }
+
         if(por[10] == 0){
             status = 'off';
         }else if(por[10] == 255){
@@ -48,7 +54,7 @@ router.get('/writer', function(req, res){
             status = por[10];
         }
     }
-    var jsn = {'chanel':por[4], 'status':status};
+    var jsn = {'chanel':por[4], 'status':status, 'd0':d0};
     console.log(jsn);
     res.send(jsn);
 });

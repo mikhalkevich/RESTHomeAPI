@@ -1,0 +1,55 @@
+extends layout
+block scripts
+ script(src='/javascripts/writer_settings.js')
+block title
+  h1
+   a(href="/") NooliteF
+   span &nbsp; /
+   a(href="/noolitef/#{str}?name=#{track}&chanel=#{chanel}") !{track} !{hex_answer}
+   span &nbsp; Базовые настройки SRF
+block content
+       form.bord(action="/noolitef/settings/#{str}/base_srf?name=#{track}&chanel=#{chanel}", method="post")
+        ul.dev
+         li
+          span Состояние после подачи напряжения
+          ul.dev
+           li
+            input(type="radio", name="state", value="off")
+            Выключено
+           li
+            input(type="radio", name="state", value="on")
+            Включено
+           li
+            input(type="radio", name="state", value="remember")
+            Запоминание состояния
+        ul.dev
+         li
+          span Выполнение команд Noolite
+          ul.dev
+           li
+            input(type="radio", name="noolite_command", value="on")
+            Разрешено (включен)
+           li
+            input(type="radio", name="noolite_command", value="off")
+            Запрещено (выключен)
+        ul.dev
+         li
+          span Выполнение команд временного включения
+          ul.dev
+           li
+            input(type="radio", name="command", value="on")
+            Разрешено (включен)
+           li
+            input(type="radio", name="command", value="off")
+            Запрещено (выключен)
+        button.sender2(type="submit") Сохранить
+        .json#writer {
+         span.slovo#powerUpState powerUpState :
+         span.writer#json_powerUpState ,
+         span.slovo#loadOutput loadOutput :
+         span.writer#json_loadOutput ,
+         span.slovo#nooLiteCommands nooLiteCommands :
+         span.writer#json_nooLiteCommands ,
+         span.slovo#temporaryOn temporaryOn :
+         span.writer#json_temporaryOn
+         span }

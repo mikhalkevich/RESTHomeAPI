@@ -28,4 +28,31 @@ router.get('/:id/retranslate', function(req, res, next){
  json = str_json(req, res);
  res.render('retranslate', json);
 });
+
+//srf
+router.get('/:id/base_srf', function(req, res, next){
+ json = str_json(req, res);
+ res.render('base_srf', json);
+});
+router.post('/:id/base_srf', function(req, res, next){
+ console.log(req.body);
+ var command_m, noolite_command_m;
+ if(req.body.command == 'on'){
+  command_m = 1;
+ }else{
+  command_m = 0;
+ }
+ if(req.body.noolite_command == 'on'){
+  noolite_command_m = 1;
+ }else{
+  noolite_command_m = 0;
+ }
+ var arr = mtrf(2, 9, 0, 0, 129, 16, command_m, 0, noolite_command_m, 0, req.params.id);
+ res.locals.port.write(arr, function (err) {
+  if (err) {
+   return console.log('Error on write: ', err.message);
+  }
+ });
+ res.redirect('/noolitef/settings/'+req.params.id+'/base_srf?name='+req.query.name+'&chanel='+req.query.chanel);
+});
 module.exports = router;

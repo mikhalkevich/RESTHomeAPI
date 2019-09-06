@@ -17,7 +17,6 @@ function read_answer(req, res) {
     }
     var str = req.params.id;
     var real_answer = {str: str, track: track, chanel: chanel, status: status};
-    res.cookie('porttest', real_answer, {maxAge: 900000, httpOnly: true});
     return real_answer;
 }
 

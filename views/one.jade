@@ -22,15 +22,22 @@ block content
          a(href = "#") Включить на время
       div(class="col-md-3")
        h2 Настройки
-       ul.dev
-        li
-         a(href = "/noolitef/settings/#{str}/base?name=#{track}&chanel=#{chanel}") Базовые настройки
-        li
-         a(href = "/noolitef/settings/#{str}/dimmer_level?name=#{track}&chanel=#{chanel}") Уровни димирования
-        li
-         a(href = "/noolitef/settings/#{str}/dimmer_level_on?name=#{track}&chanel=#{chanel}") Уровень включения диммера
-        li
-         a(href = "/noolitef/settings/#{str}/retranslate?name=#{track}&chanel=#{chanel}") Задержка ретрансляции
+       if track == 'Реле/диммер SUF-1-300'
+        span.service для SUF-1-300
+        ul.dev
+         li
+          a(href = "/noolitef/settings/#{str}/base?name=#{track}&chanel=#{chanel}") Базовые настройки
+         li
+          a(href = "/noolitef/settings/#{str}/dimmer_level?name=#{track}&chanel=#{chanel}") Уровни димирования
+         li
+          a(href = "/noolitef/settings/#{str}/dimmer_level_on?name=#{track}&chanel=#{chanel}") Уровень включения диммера
+         li
+          a(href = "/noolitef/settings/#{str}/retranslate?name=#{track}&chanel=#{chanel}") Задержка ретрансляции
+       else
+        span.service для SRF-1-3000, SRF-1-3000-M, SRF-10-1000
+        ul.dev
+         li
+          a(href = "/noolitef/settings/#{str}/base_srf?name=#{track}&chanel=#{chanel}") Базовые настройки
       div(class="col-md-3")
        h2 Информация
        ul.dev
