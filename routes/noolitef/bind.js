@@ -25,7 +25,17 @@ router.get('/', function (req, res, next) {
     });
     res.redirect('/');
 });
-
+router.get('/on', function(req, res, next){
+    console.log('bind start');
+    var arr = mtrf(1, 3, 0, 2, 0, 0, 0, 0, 0, 0, '0-0-0-0');
+    res.locals.port.write(arr, function (err) {
+        console.log('bind ok');
+        if (err) {
+            return console.log('Error on write: ', err.message);
+        }
+    });
+    res.redirect('/')
+});
 router.get('/:id/unbind', function (req, res, next) {
     var id = req.params.id;
     //var arr=[171,2, 9, 0, 0, 131, 0, 1, 0, 0, 0, 0, 0, 226,156,183,172];

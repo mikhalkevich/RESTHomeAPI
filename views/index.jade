@@ -7,7 +7,7 @@ block content
    for one, index in arr
     if one
      li
-      a(href = "/noolitef/#{one}?chanel=#{arr_chanel[index]}&name=#{arr_name[index]}")
+      a(href = "/noolitef/#{one}?chanel=#{arr_chanel[index]}&name=#{arr_name[index]}&hex=#{arr_hex[index]}")
        &nbsp;
        b= arr_name[index]
       &nbsp;&nbsp;
@@ -18,5 +18,12 @@ block content
    li
      a(href="/devices/") Найти привязанные устройства
    li
-     a(href = "/bind") Привязать новое устройство
+     a(href="/noolitef/cmd/sensors", target="_blank") Обновить информацию с датчиков
+   li
+     a(href = "/bind") Привязаться к устройству *
+   li
+     a(href = "/bind/on") Включить режим привязки **
+  span * На устройстве должна быть нажата кнопка привязки
+  br
+  span ** Кнопка привязки на устройстве нажимается после включения режима привзки
 
